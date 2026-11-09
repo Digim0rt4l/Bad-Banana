@@ -1,1 +1,7 @@
+* text=auto eol=lf
+*.py text eol=lf diff=python
+*.md text eol=lf
+*.service text eol=lf
+*.yml text eol=lf
+*.png binary
 
