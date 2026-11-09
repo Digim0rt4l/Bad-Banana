@@ -1,0 +1,82 @@
+name: Bug report
+description: Something in Bad Banana is broken or behaves unexpectedly.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem. Please fill in as much as you can.
+        **Never paste passwords, private URLs or personal music file paths you do not want public.**
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the problem, and what you expected to happen instead.
+      placeholder: When I press next during a crossfade, the music stops…
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Start the server with `python3 bad_banana.py --music ~/Music`
+        2. Open the page in Safari on iPhone
+        3. Type `fade 4` and wait for the track to end
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Bad Banana version
+      description: Shown next to the logo, for example v1.4.
+      placeholder: v1.4
+    validations:
+      required: true
+
+  - type: input
+    id: server
+    attributes:
+      label: Server device and OS
+      placeholder: Raspberry Pi 4, Raspberry Pi OS Bookworm, Python 3.11
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: Safari 18 on iPhone 15, Chrome 130 on Windows 11
+    validations:
+      required: true
+
+  - type: dropdown
+    id: format
+    attributes:
+      label: Audio formats involved (if relevant)
+      multiple: true
+      options:
+        - MP3
+        - FLAC
+        - Ogg Vorbis / Opus
+        - M4A / MP4 / AAC
+        - WAV
+        - Not format related
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Server output
+      description: Run the server with `--verbose` and paste anything relevant. This is rendered as code automatically.
+      render: text
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Browser console errors
+      description: Open the browser developer tools (F12) and paste any red errors.
+      render: text

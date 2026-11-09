@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest an idea or improvement for Bad Banana.
+title: "[Idea]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bad Banana deliberately stays a single Python file with **no third-party dependencies**.
+        Ideas that keep it that way are the easiest to accept.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      placeholder: I keep losing my place in long DJ mixes when…
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: What would you like to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you have considered
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and this has not been suggested yet.
+          required: true
+        - label: This can work without installing extra packages on the Raspberry Pi.
