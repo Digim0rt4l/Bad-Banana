@@ -15,7 +15,7 @@ Bad Banana has a few deliberate constraints. Please keep them in mind before ope
 ## Development setup
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/bad-banana.git
+git clone https://github.com/Digim0rt4l/bad-banana.git
 cd bad-banana
 python3 bad_banana.py --music ~/Music --verbose
 ```

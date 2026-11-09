@@ -26,4 +26,4 @@ The first public release.
 - Limits on tag decompression to stop "zip bomb" files.
 - Album art redirects only followed to the Cover Art Archive and archive.org.
 
-[1.4.0]: https://github.com/YOUR-USERNAME/bad-banana/releases/tag/v1.4.0
+[1.4.0]: https://github.com/Digim0rt4l/bad-banana/releases/tag/v1.4.0

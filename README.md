@@ -9,6 +9,7 @@
 **A retro terminal-style music streaming server for the Raspberry Pi.**<br>
 One Python file. Zero dependencies. ASCII album art, a live spectrum analyser and buttery 8-second crossfades.
 
+[![CI](https://github.com/Digim0rt4l/bad-banana/actions/workflows/ci.yml/badge.svg)](https://github.com/Digim0rt4l/bad-banana/actions/workflows/ci.yml)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Dependencies: none](https://img.shields.io/badge/dependencies-none-c6ff1a)](#requirements)
 [![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-ready-A22846?logo=raspberrypi&logoColor=white)](#run-it-on-boot)
@@ -116,7 +117,7 @@ Everything, including the web interface, lives in one file: [`bad_banana.py`](ba
 ## Quick start
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/bad-banana.git
+git clone https://github.com/Digim0rt4l/bad-banana.git
 cd bad-banana
 python3 bad_banana.py --music ~/Music
 ```
@@ -140,7 +141,7 @@ Open that address on any phone, tablet or computer on the same network. Press an
 > [!TIP]
 > No `git`? Download just the one file:
 > ```bash
-> curl -O https://raw.githubusercontent.com/YOUR-USERNAME/bad-banana/main/bad_banana.py
+> curl -O https://raw.githubusercontent.com/Digim0rt4l/bad-banana/main/bad_banana.py
 > ```
 
 ## Usage

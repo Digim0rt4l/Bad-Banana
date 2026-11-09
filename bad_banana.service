@@ -1,6 +1,6 @@
 [Unit]
 Description=Bad Banana terminal-style music server
-Documentation=https://github.com/YOUR-USERNAME/bad-banana
+Documentation=https://github.com/Digim0rt4l/bad-banana
 After=network-online.target
 Wants=network-online.target
 
