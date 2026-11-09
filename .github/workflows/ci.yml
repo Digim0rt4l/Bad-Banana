@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        include:
+          - os: ubuntu-22.04
+            python: "3.7"
+          - os: ubuntu-22.04
+            python: "3.8"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Compile
+        run: python -m py_compile bad_banana.py
+
+      - name: Lint
+        run: |
+          python -m pip install --quiet pyflakes
+          python -m pyflakes bad_banana.py
+
+      - name: Smoke test
+        run: |
+          mkdir -p /tmp/music/Artist/Album
+          python - <<'EOF'
+          import math, struct, wave
+          with wave.open("/tmp/music/Artist/Album/01 Test Tone.wav", "wb") as handle:
+              handle.setnchannels(1)
+              handle.setsampwidth(2)
+              handle.setframerate(8000)
+              handle.writeframes(b"".join(
+                  struct.pack("<h", int(8000 * math.sin(2 * math.pi * 440 * n / 8000)))
+                  for n in range(16000)
+              ))
+          EOF
+          python -I bad_banana.py --music /tmp/music --port 8099 --no-online-art &
+          for attempt in $(seq 1 30); do
+            curl --silent --fail http://127.0.0.1:8099/ > /dev/null && break
+            sleep 1
+          done
+          curl --silent --fail http://127.0.0.1:8099/ | grep --quiet "BAD BANANA"
+          curl --silent --fail http://127.0.0.1:8099/api/library | python -c "import json, sys; data = json.load(sys.stdin); assert data['count'] == 1, data; print(data['tracks'][0]['title'])"
+          track=$(curl --silent http://127.0.0.1:8099/api/library | python -c "import json, sys; print(json.load(sys.stdin)['tracks'][0]['id'])")
+          curl --silent --fail --range 0-99 --output /dev/null --write-out "%{http_code}\n" "http://127.0.0.1:8099/stream/$track" | grep --quiet 206
+          curl --silent --fail http://127.0.0.1:8099/api/status | python -c "import json, sys; assert 'host' in json.load(sys.stdin)"
