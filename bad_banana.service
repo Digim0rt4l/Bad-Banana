@@ -1,0 +1,29 @@
+[Unit]
+Description=Bad Banana terminal-style music server
+Documentation=https://github.com/YOUR-USERNAME/bad-banana
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/bad-banana
+ExecStart=/usr/bin/python3 -I /home/pi/bad-banana/bad_banana.py --music /home/pi/Music --port 8080
+Restart=on-failure
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=multi-user.target
