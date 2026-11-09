@@ -6,8 +6,8 @@ Only the latest release of Bad Banana receives security fixes.
 
 | Version | Supported |
 | ------- | --------- |
-| 1.4.x   | ✅        |
-| < 1.4   | ❌        |
+| 1.4.x   | Yes       |
+| < 1.4   | No        |
 
 ## Reporting a vulnerability
 
