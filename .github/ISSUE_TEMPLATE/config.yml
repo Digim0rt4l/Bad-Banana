@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: Security vulnerability
-    url: https://github.com/YOUR-USERNAME/bad-banana/security/advisories/new
+    url: https://github.com/Digim0rt4l/bad-banana/security/advisories/new
     about: Please report security problems privately, not as a public issue.
