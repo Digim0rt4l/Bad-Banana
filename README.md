@@ -10,16 +10,16 @@
 One Python file. Zero dependencies. ASCII album art, a live spectrum analyser and buttery 8-second crossfades.
 
 [![Python 3.7+](https://img.shields.io/badge/python-3.7%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Dependencies: none](https://img.shields.io/badge/dependencies-none-c6ff1a)](#-requirements)
-[![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-ready-A22846?logo=raspberrypi&logoColor=white)](#-run-it-on-boot)
+[![Dependencies: none](https://img.shields.io/badge/dependencies-none-c6ff1a)](#requirements)
+[![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-ready-A22846?logo=raspberrypi&logoColor=white)](#run-it-on-boot)
 [![License: MIT](https://img.shields.io/badge/license-MIT-050d2b)](LICENSE)
 [![Single file](https://img.shields.io/badge/single%20file-bad__banana.py-ffd75f)](bad_banana.py)
 
-[Features](#-features) ·
-[Quick start](#-quick-start) ·
-[Usage](#-usage) ·
-[How it works](#-how-it-works) ·
-[FAQ](#-faq)
+[Features](#features) ·
+[Quick start](#quick-start) ·
+[Usage](#usage) ·
+[How it works](#how-it-works) ·
+[FAQ](#faq)
 
 <img src="docs/screenshots/player.png" alt="Bad Banana playing a track, with ASCII album art, a live spectrum analyser and the music library" width="100%">
 
@@ -27,67 +27,67 @@ One Python file. Zero dependencies. ASCII album art, a live spectrum analyser an
 
 ---
 
-## 🍌 What is Bad Banana?
+## What is Bad Banana?
 
 Bad Banana turns a Raspberry Pi (or any computer with Python) into a **personal music streaming server**. Point it at a folder of music, open the address it prints in any browser on your network, and you get a player that looks and feels like a vintage computer terminal.
 
 It is built for people who:
 
-- :file_folder: have a **music collection on disk** (MP3, FLAC, Ogg, Opus, M4A, WAV) and want to play it from any phone, tablet or laptop at home,
-- :strawberry: want a **fun, low-power home server project** for a spare Raspberry Pi,
-- :lock: prefer **self-hosted** software with no accounts, no cloud and no tracking,
-- :package: do not want to install or maintain **any third-party packages**.
+- have a **music collection on disk** (MP3, FLAC, Ogg, Opus, M4A, WAV) and want to play it from any phone, tablet or laptop at home,
+- want a **fun, low-power home server project** for a spare Raspberry Pi,
+- prefer **self-hosted** software with no accounts, no cloud and no tracking,
+- do not want to install or maintain **any third-party packages**.
 
 Everything, including the web interface, lives in one file: [`bad_banana.py`](bad_banana.py). It runs on the Python that already comes with Raspberry Pi OS.
 
 <details>
-<summary><strong>📑 Table of contents</strong></summary>
+<summary><strong>Table of contents</strong></summary>
 
-- [What is Bad Banana?](#-what-is-bad-banana)
-- [Features](#-features)
-- [Screenshots](#-screenshots)
-- [Requirements](#-requirements)
-- [Quick start](#-quick-start)
-- [Usage](#-usage)
+- [What is Bad Banana?](#what-is-bad-banana)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Requirements](#requirements)
+- [Quick start](#quick-start)
+- [Usage](#usage)
   - [Command-line options](#command-line-options)
   - [Environment variables](#environment-variables)
   - [Examples](#examples)
-- [Run it on boot](#-run-it-on-boot)
-- [Using the player](#-using-the-player)
+- [Run it on boot](#run-it-on-boot)
+- [Using the player](#using-the-player)
   - [Keyboard shortcuts](#keyboard-shortcuts)
   - [Terminal commands](#terminal-commands)
   - [Phones, lock screens and background play](#phones-lock-screens-and-background-play)
-- [How it works](#-how-it-works)
-- [Supported formats](#-supported-formats)
-- [Browser support](#-browser-support)
-- [HTTP API](#-http-api)
-- [Security](#-security)
-- [Privacy](#-privacy)
-- [Troubleshooting](#-troubleshooting)
-- [FAQ](#-faq)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Acknowledgements](#-acknowledgements)
+- [How it works](#how-it-works)
+- [Supported formats](#supported-formats)
+- [Browser support](#browser-support)
+- [HTTP API](#http-api)
+- [Security](#security)
+- [Privacy](#privacy)
+- [Troubleshooting](#troubleshooting)
+- [FAQ](#faq)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
 </details>
 
-## ✨ Features
+## Features
 
-| | Feature | Details |
-|:-:|---|---|
-| 🖥️ | **Terminal interface** | Box-drawn panels, a blinking progress bar, a boot sequence and a real command prompt with history and tab completion. |
-| 🎨 | **ASCII album art** | Cover art is converted into coloured ASCII characters live in the browser, with *color*, *blocks* and *mono* styles. |
-| 📊 | **Live spectrum analyser** | 60 fps bars on a musical (logarithmic) scale, smoothed so they flow, with peak markers that pop up on real peaks and fade away. |
-| 🔀 | **Smart shuffle** | Plays every track in the library once before repeating, and keeps songs from the same album apart. |
-| 🎚️ | **Crossfade & gapless** | The next track is downloaded into memory ahead of time, then faded in over 0–12 seconds (8 by default). |
-| 📱 | **Lock-screen controls** | Title, artist, artwork and progress show in your phone's lock screen and your computer's media controls. Playback continues in the background. |
-| 🏷️ | **Built-in tag reader** | Reads titles, artists, albums, track numbers, durations and embedded artwork without any libraries. |
-| 🌐 | **Online album art** | Missing covers are fetched from MusicBrainz and the Cover Art Archive, then deleted when the track finishes. |
-| 🔐 | **Safe by default** | Strict Content Security Policy, CSRF protection, optional password and hardened file handling. |
-| 🪶 | **Featherweight** | One file and the standard library only. The server just reads and streams files; the browser does the heavy lifting. |
+| Feature | Details |
+|---|---|
+| **Terminal interface** | Box-drawn panels, a blinking progress bar, a boot sequence and a real command prompt with history and tab completion. |
+| **ASCII album art** | Cover art is converted into coloured ASCII characters live in the browser, with *color*, *blocks* and *mono* styles. |
+| **Live spectrum analyser** | 60 fps bars on a musical (logarithmic) scale, smoothed so they flow, with peak markers that pop up on real peaks and fade away. |
+| **Smart shuffle** | Plays every track in the library once before repeating, and keeps songs from the same album apart. |
+| **Crossfade & gapless** | The next track is downloaded into memory ahead of time, then faded in over 0–12 seconds (8 by default). |
+| **Lock-screen controls** | Title, artist, artwork and progress show in your phone's lock screen and your computer's media controls. Playback continues in the background. |
+| **Built-in tag reader** | Reads titles, artists, albums, track numbers, durations and embedded artwork without any libraries. |
+| **Online album art** | Missing covers are fetched from MusicBrainz and the Cover Art Archive, then deleted when the track finishes. |
+| **Safe by default** | Strict Content Security Policy, CSRF protection, optional password and hardened file handling. |
+| **Featherweight** | One file and the standard library only. The server just reads and streams files; the browser does the heavy lifting. |
 
-## 📸 Screenshots
+## Screenshots
 
 <table>
   <tr>
@@ -106,14 +106,14 @@ Everything, including the web interface, lives in one file: [`bad_banana.py`](ba
 > [!NOTE]
 > The music and artwork in these screenshots are made up for the demo.
 
-## 📋 Requirements
+## Requirements
 
 - **Python 3.7 or newer.** Raspberry Pi OS Buster (3.7), Bullseye (3.9) and Bookworm (3.11) all work out of the box.
 - **Any operating system.** Built for Raspberry Pi OS, and also runs on other Linux distributions, macOS and Windows.
-- **A modern browser** on the device you listen with. See [browser support](#-browser-support).
+- **A modern browser** on the device you listen with. See [browser support](#browser-support).
 - **No packages to install.** Nothing from `pip`, `apt` or `npm` is needed.
 
-## 🚀 Quick start
+## Quick start
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/bad-banana.git
@@ -143,7 +143,7 @@ Open that address on any phone, tablet or computer on the same network. Press an
 > curl -O https://raw.githubusercontent.com/YOUR-USERNAME/bad-banana/main/bad_banana.py
 > ```
 
-## 🔧 Usage
+## Usage
 
 ```text
 python3 bad_banana.py [-h] [-m MUSIC] [--host HOST] [-p PORT] [--no-online-art]
@@ -189,7 +189,7 @@ BADBANANA_DIR=/srv/music BADBANANA_VERBOSE=1 python3 bad_banana.py
 > [!IMPORTANT]
 > Ports below 1024 (such as 80) need root on Linux. **Never run Bad Banana as root.** Use a port such as 8080 instead, or put a reverse proxy like Caddy or nginx in front of it.
 
-## 🔁 Run it on boot
+## Run it on boot
 
 The repository includes a hardened [systemd](https://systemd.io/) service, [`bad_banana.service`](bad_banana.service).
 
@@ -213,7 +213,7 @@ The repository includes a hardened [systemd](https://systemd.io/) service, [`bad
 > [!NOTE]
 > The service makes the whole system read-only to Bad Banana and gives it a private `/tmp`. If your music lives outside your home folder, such as on a USB drive under `/mnt` or `/media`, that is fine, because the server only ever **reads** music.
 
-## 🎧 Using the player
+## Using the player
 
 The screen is split into panels:
 
@@ -317,18 +317,18 @@ Bad Banana uses the browser's [Media Session API](https://developer.mozilla.org/
 > [!WARNING]
 > iPhones and iPads do not let web pages change the volume, so on iOS the volume bar is replaced by a reminder to use your device's buttons, and crossfades become gapless track changes. Mute still works.
 
-## 🔬 How it works
+## How it works
 
 ```mermaid
 flowchart LR
-    subgraph Pi["🍓 Raspberry Pi — bad_banana.py"]
+    subgraph Pi["Raspberry Pi — bad_banana.py"]
         Scanner["Library scanner<br/>+ tag reader"]
         Server["HTTP server<br/>(threaded, range requests)"]
         Art["Album art service"]
     end
-    Music[("🎵 Music folder")]
+    Music[("Music folder")]
     MB["MusicBrainz<br/>+ Cover Art Archive"]
-    subgraph Browser["📱 Browser"]
+    subgraph Browser["Browser"]
         UI["Terminal UI"]
         Decks["Two audio decks<br/>+ Web Audio crossfade"]
         Ascii["ASCII renderer"]
@@ -343,7 +343,7 @@ flowchart LR
 ```
 
 <details>
-<summary><strong>📚 The library scanner and tag reader</strong></summary>
+<summary><strong>The library scanner and tag reader</strong></summary>
 
 When the server starts, or when you type `rescan`, it walks the music folder (following symbolic links safely and skipping hidden files) and reads each file's tags with its own built-in parsers:
 
@@ -358,14 +358,14 @@ Missing tags fall back to the file name (for example `03 - Artist - Title.mp3`) 
 </details>
 
 <details>
-<summary><strong>📡 Streaming</strong></summary>
+<summary><strong>Streaming</strong></summary>
 
 Audio is served by a threaded server built on Python's `http.server`, with full support for HTTP range requests. That lets you seek instantly and lets browsers buffer efficiently. The page and library are gzip-compressed, and the page itself is protected by a strict Content Security Policy.
 
 </details>
 
 <details>
-<summary><strong>🎚️ Crossfades and gapless playback</strong></summary>
+<summary><strong>Crossfades and gapless playback</strong></summary>
 
 The browser keeps two audio "decks", like a DJ:
 
@@ -388,7 +388,7 @@ The fade uses an equal-power curve through the Web Audio API, so the volume does
 </details>
 
 <details>
-<summary><strong>🖼️ Album art pipeline</strong></summary>
+<summary><strong>Album art pipeline</strong></summary>
 
 1. The browser asks the server for `/art/<id>`.
 2. Unless online art is turned off, the server first looks the track up on MusicBrainz: the album, then the song if that fails. Results are matched carefully by artist and title, then the cover is downloaded from the Cover Art Archive.
@@ -401,7 +401,7 @@ Lookups follow MusicBrainz's rate limit of one request per second[^ratelimit], b
 </details>
 
 <details>
-<summary><strong>📊 The spectrum analyser</strong></summary>
+<summary><strong>The spectrum analyser</strong></summary>
 
 A Web Audio `AnalyserNode` provides frequency data. Each column covers an equal slice of a 40 Hz–16 kHz logarithmic scale, so it matches how we hear. The bars are averaged, blurred across neighbours, eased with a fast attack and slow release, and given a slight sway. Peak markers appear only on genuine local peaks, then fade out over 0.4 seconds.
 
@@ -410,40 +410,40 @@ On iOS, a silent copy of the audio feeds the analyser, because routing the real 
 </details>
 
 <details>
-<summary><strong>🔀 Shuffle</strong></summary>
+<summary><strong>Shuffle</strong></summary>
 
 Instead of picking a random track each time, Bad Banana shuffles the whole library (or the current search results) like a deck of cards. It then reorders that list so tracks from the same album are spread apart wherever possible. Every track plays once before any repeats.
 
 </details>
 
-## 🎼 Supported formats
+## Supported formats
 
 | Format | Extensions | Tags | Embedded art | Plays in |
 |---|---|:-:|:-:|---|
-| MP3 | `.mp3` | ✅ | ✅ | Every browser |
-| AAC / ALAC | `.m4a` `.mp4` `.aac` | ✅ | ✅ | Every browser (ALAC: Safari only) |
-| FLAC | `.flac` | ✅ | ✅ | Every modern browser |
-| Ogg Vorbis | `.ogg` `.oga` | ✅ | ✅ | Chrome, Edge, Firefox; recent Safari only |
-| Opus | `.opus` | ✅ | ✅ | Chrome, Edge, Firefox; recent Safari only |
-| WAV | `.wav` | ✅ | ✅ | Every browser |
+| MP3 | `.mp3` | Yes | Yes | Every browser |
+| AAC / ALAC | `.m4a` `.mp4` `.aac` | Yes | Yes | Every browser (ALAC: Safari only) |
+| FLAC | `.flac` | Yes | Yes | Every modern browser |
+| Ogg Vorbis | `.ogg` `.oga` | Yes | Yes | Chrome, Edge, Firefox; recent Safari only |
+| Opus | `.opus` | Yes | Yes | Chrome, Edge, Firefox; recent Safari only |
+| WAV | `.wav` | Yes | Yes | Every browser |
 
 Folder images are recognised with the names `cover`, `folder`, `front`, `album`, `albumart`, `albumartsmall` and `artwork`, in `.jpg`, `.jpeg`, `.png`, `.webp` or `.gif` format.
 
 > [!TIP]
 > Files the browser cannot decode are skipped automatically, with a message in the Activity panel.
 
-## 🌍 Browser support
+## Browser support
 
 | Browser | Playback | Crossfade | Spectrum | Lock-screen controls |
 |---|:-:|:-:|:-:|:-:|
-| Chrome / Edge (desktop & Android) | ✅ | ✅ | ✅ | ✅ |
-| Firefox (desktop & Android) | ✅ | ✅ | ✅ | ✅ |
-| Safari (macOS) | ✅ | ✅ | ✅ | ✅ |
-| Safari (iPhone & iPad) | ✅ | ➖ gapless | ✅ | ✅ |
+| Chrome / Edge (desktop & Android) | Yes | Yes | Yes | Yes |
+| Firefox (desktop & Android) | Yes | Yes | Yes | Yes |
+| Safari (macOS) | Yes | Yes | Yes | Yes |
+| Safari (iPhone & iPad) | Yes | Gapless only | Yes | Yes |
 
 The page needs JavaScript, and the spectrum starts after your first tap or key press, because browsers only allow audio processing after you interact with the page.
 
-## 🔌 HTTP API
+## HTTP API
 
 The web interface uses a small JSON API that you can also use from scripts.
 
@@ -485,7 +485,7 @@ curl -s -X POST -H "X-BadBanana: 1" http://raspberrypi.local:8080/api/rescan
 
 </details>
 
-## 🔐 Security
+## Security
 
 > [!CAUTION]
 > Bad Banana is meant for a **trusted home network**. Do not expose it directly to the internet. For remote listening, use a VPN such as [WireGuard](https://www.wireguard.com/) or [Tailscale](https://tailscale.com/), or a reverse proxy that adds HTTPS.
@@ -502,13 +502,13 @@ Built-in protections include:
 
 Found a vulnerability? Please read [SECURITY.md](SECURITY.md) and report it privately.
 
-## 🙈 Privacy
+## Privacy
 
 Bad Banana has no accounts, analytics or tracking. The only data that leaves your network is the **artist, album and song title** sent to MusicBrainz when it looks up album art, along with the contact set by `--contact`. Turn this off completely with `--no-online-art`.
 
 Your settings are stored only in your own browser's local storage.
 
-## 🧰 Troubleshooting
+## Troubleshooting
 
 <details>
 <summary><strong>I can't open the page from my phone</strong></summary>
@@ -537,7 +537,7 @@ Something else is using that port, possibly another copy of Bad Banana. Pick a d
 <details>
 <summary><strong>A track shows "ERR 4: can't play"</strong></summary>
 
-Your browser cannot decode that format. See [supported formats](#-supported-formats). For example, older Safari versions cannot play Ogg or Opus, and ALAC only plays in Safari. Converting the file to MP3, AAC or FLAC fixes it.
+Your browser cannot decode that format. See [supported formats](#supported-formats). For example, older Safari versions cannot play Ogg or Opus, and ALAC only plays in Safari. Converting the file to MP3, AAC or FLAC fixes it.
 
 </details>
 
@@ -564,7 +564,7 @@ Type `rescan` at the prompt, or restart the server. The library is not watched f
 
 </details>
 
-## ❓ FAQ
+## FAQ
 
 <details>
 <summary><strong>Why "standard library only"?</strong></summary>
@@ -601,7 +601,7 @@ Bad Banana only downloads covers from the Cover Art Archive, a project by MusicB
 
 </details>
 
-## 🧭 Roadmap
+## Roadmap
 
 - [x] ASCII album art in three styles
 - [x] Crossfade, prefetching and gapless playback
@@ -614,19 +614,19 @@ Bad Banana only downloads covers from the Cover Art Archive, a project by MusicB
 
 Have an idea? [Open a feature request](../../issues/new/choose).
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are very welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) first. The short version: keep it one file, standard library only, and test on a phone as well as a desktop.
 
-## 📄 License
+## License
 
 Bad Banana is released under the [MIT License](LICENSE). © 2026 Scott Forbes.
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 - [MusicBrainz](https://musicbrainz.org/) and the [Cover Art Archive](https://coverartarchive.org/) for open music metadata and artwork
 - The [Raspberry Pi Foundation](https://www.raspberrypi.org/) for tiny, wonderful computers
-- Everyone who still keeps a folder full of music files 🍌
+- Everyone who still keeps a folder full of music files
 
 [^ratelimit]: MusicBrainz asks applications to make no more than one request per second and to identify themselves with a contact address. Bad Banana waits 1.1 seconds between requests.
 [^covers]: Album covers are copyrighted by their owners. The Cover Art Archive makes them available for display; Bad Banana stores them only temporarily and never redistributes them.
